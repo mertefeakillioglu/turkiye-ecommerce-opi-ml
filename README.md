@@ -20,16 +20,6 @@ SHAP global and class-level explainability
 
 LIME local explanation analysis
 
-Every result and figure discussed in Chapter 4 can be regenerated from the notebooks.
-data/                 → Survey dataset
-notebooks/            → Step-by-step modelling notebooks
-outputs/
-   ├── lime/          → LIME local explanations
-   ├── shap/          → SHAP explainability visuals
-   └── results/       → Model performance outputs
-requirements.txt      → Python dependencies
-appendix_mapping.md   → Mapping between thesis sections and notebooks
-📊 Survey Dataset Used in This Study
 
 The dataset used throughout this study is provided in the data/ directory as:
 
