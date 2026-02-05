@@ -1,97 +1,140 @@
+Perception-Based Online Purchase Behaviour Modelling in Turkish E-Commerce (ML & XAI)
+
+This repository contains the complete reproducible codebase, dataset, modelling pipeline, and explainable AI analyses developed for the MSc dissertation:
+
+“Factors Influencing Consumer Purchase Decisions in the Turkish E-Commerce Market: A Machine Learning-Based Feature Importance Analysis.”
+
+The study models online purchase intention (OPI) as a behaviour-proximate probability using item-level perception data and analyses it through ensemble machine learning and Explainable Artificial Intelligence (XAI) techniques.
+
+This repository is designed not as a simple code archive, but as a fully executable research environment.
+
+🎯 Purpose of This Repository
+
+This repository allows full reproduction of:
+
+Data preparation steps
+
+Model training and evaluation
+
+SHAP global and class-level explainability
+
+LIME local explanation analysis
+
+Every result and figure discussed in Chapter 4 can be regenerated from the notebooks.
+data/                 → Survey dataset
+notebooks/            → Step-by-step modelling notebooks
+outputs/
+   ├── lime/          → LIME local explanations
+   ├── shap/          → SHAP explainability visuals
+   └── results/       → Model performance outputs
+requirements.txt      → Python dependencies
+appendix_mapping.md   → Mapping between thesis sections and notebooks
+📊 Survey Dataset Used in This Study
+
+The dataset used throughout this study is provided in the data/ directory as:
+
+Survey on Consumer Decision Mechanisms in Online Shopping.xlsx
+
+This file contains the original anonymised survey responses and serves as the starting point for all preprocessing and modelling steps described in Section 3.8 – Data Preparation.
+
+📝 Survey Instrument
+
+The original questionnaire structure, item wording, and measurement design are included in this repository to ensure transparency of how perception variables were operationalised before modelling.
+
+▶️ Running the Analysis via Google Colab
+
+All notebooks can be executed directly in the browser using Google Colab:
+
+Colab Link:
+https://colab.research.google.com/drive/1SR3z7UoRTolM38dWTtuOauttCQj7Ief2?usp=sharing
+
+⬆️ Uploading the Survey Dataset in Colab
+
+When the notebooks start in Colab, users are prompted to upload the survey dataset manually.
+
+Simply upload:
+
+Survey on Consumer Decision Mechanisms in Online Shopping.xlsx
+
+from the data/ folder when prompted. The notebook then automatically proceeds with cleaning, encoding, modelling, and explainability steps.
+
+This design ensures the analysis runs without any environment setup or file mounting.
 
 🏆 Best Performing Configurations and Results
 
-During the experimentation phase, multiple model configurations, hyperparameter settings, and class structure variations were tested using Optuna and cross-validation.
+During experimentation, many model configurations and hyperparameter settings were tested.
 
-For the purpose of clarity, interpretability, and alignment with behavioural discussion, the dissertation reports models that provided the most stable and behaviourally meaningful explanations, rather than the configurations that achieved the absolute highest numerical performance metrics.
+For interpretability and behavioural clarity, the dissertation reports models that provided the most meaningful explanations rather than the absolute highest numerical scores.
 
-The best-performing configurations in terms of raw predictive metrics (accuracy, F1-score, ROC-AUC, balanced accuracy, etc.) are provided in this repository through additional result files and visual outputs.
-
-These results are included here to ensure:
-
-Transparency of the full experimentation process
-
-Evidence that model selection was not based solely on performance scores
-
-Demonstration of the trade-off between predictive performance and interpretability
-
-Availability of the highest-performing experimental outputs for reference
-
-This reflects the methodological decision described in Chapter 3, where model selection prioritised explainability consistency and behavioural interpretability over marginal improvements in accuracy.
-
-By including these best-performing outputs, this repository presents both:
-
-The models reported in the dissertation for their interpretability value
-
-The highest-performing experimental configurations for full methodological transparency
+The best-performing experimental results are included in this repository to ensure full transparency of the experimentation process and to demonstrate the trade-off between performance and interpretability.
 
 🧪 Additional Analytical Outputs Beyond Thesis Figures
 
-During the modelling and explainability stages, a large number of SHAP, LIME, and evaluation visuals were generated to test alternative class structures, model behaviours, and interpretability stability.
+Not all generated SHAP, LIME, and evaluation visuals were included as figures in the dissertation.
 
-For clarity and reporting focus, not all of these visuals were included as figures in the dissertation. However, they are intentionally provided in this repository to ensure:
+They are provided here to document:
 
-Full transparency of the modelling workflow
+Robustness checks
 
-Evidence of extensive experimentation and validation
+Alternative class structure experiments
 
-Demonstration of robustness checks performed before selecting the final reported models
+Additional explainability scenarios evaluated during model selection
 
-Clear traceability between code execution and analytical reasoning
-
-These outputs should be understood as supporting analytical evidence, documenting the depth of the experimentation phase and illustrating how the final models and figures in Chapter 4 were selected after evaluating multiple explainability scenarios.
-
-This is consistent with the methodological statement in Chapter 3, where alternative configurations and interpretability outputs are acknowledged as part of the model selection process.
-
-By including these additional visuals, this repository serves not only as a replication environment for the dissertation but also as a transparent record of the complete analytical exploration.
+This repository therefore documents the entire analytical exploration process, not only the final reported figures.
 
 🔍 LIME Analysis Files — outputs/lime/
 
-| File                              | Explanation                                                                                               |
-| --------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| `lime_high_binary.png`            | Shows how positive perception signals combine to produce a high-intention prediction in binary modelling. |
-| `lime_low_binary.png`             | Shows how weak or negative perception signals produce a low-intention prediction.                         |
-| `lime_misclassified_binary.png`   | Used for error analysis to demonstrate how mixed perception signals can lead to incorrect classification. |
-| `lime_all_classes_3class.png`     | Overview of explanation patterns across Low–Mid–High intention levels.                                    |
-| `lime_class_0_3class.png`         | Detailed explanation for a Low intention respondent in 3-class modelling.                                 |
-| `lime_class_1_3class.png`         | Explanation for a Mid intention respondent showing mixed perception drivers.                              |
-| `lime_class_2_3class.png`         | Explanation for a High intention respondent in 3-class modelling.                                         |
-| `lime_all_classes_multiclass.png` | Overview of explanations across Very Low–Low–Medium–High intention levels.                                |
-| `lime_class_0_multiclass.png`     | Explanation for a Very Low intention respondent.                                                          |
-| `lime_class_1_multiclass.png`     | Explanation for a Low intention respondent.                                                               |
-| `lime_class_2_multiclass.png`     | Explanation for a Medium intention respondent.                                                            |
-| `lime_class_3_multiclass.png`     | Explanation for a High intention respondent.                                                              |
-
+Local explanations showing how the model predicts for individual respondents.
+| File                            | Explanation                         |
+| ------------------------------- | ----------------------------------- |
+| lime_high_binary.png            | High intention explanation (binary) |
+| lime_low_binary.png             | Low intention explanation (binary)  |
+| lime_misclassified_binary.png   | Misclassification analysis          |
+| lime_all_classes_3class.png     | Overview (3-class)                  |
+| lime_class_0_3class.png         | Low intention (3-class)             |
+| lime_class_1_3class.png         | Mid intention (3-class)             |
+| lime_class_2_3class.png         | High intention (3-class)            |
+| lime_all_classes_multiclass.png | Overview (4-class)                  |
+| lime_class_0_multiclass.png     | Very Low intention                  |
+| lime_class_1_multiclass.png     | Low intention                       |
+| lime_class_2_multiclass.png     | Medium intention                    |
+| lime_class_3_multiclass.png     | High intention                      |
 
 🌐 SHAP Analysis Files — outputs/shap/
 
-| File                             | Explanation                                                            |
-| -------------------------------- | ---------------------------------------------------------------------- |
-| `shap_importance_binary.png`     | Global feature importance for binary classification.                   |
-| `shap_importance_multiclass.png` | Feature importance across four intention levels.                       |
-| `shap_importance_3class.png`     | Feature importance validation under merged class structure.            |
-| `shap_summary_binary.png`        | Distribution of feature effects pushing predictions high or low.       |
-| `shap_summary_multiclass.png`    | Distribution of feature effects across four classes.                   |
-| `shap_summary_3class.png`        | Distribution of feature effects in simplified class structure.         |
-| `shap_dependence_binary.png`     | Nonlinear relationships between key predictors and intention (binary). |
-| `shap_dependence_multiclass.png` | Interaction differences across intention levels.                       |
-| `shap_dependence_3class.png`     | Stability of nonlinear behaviour in 3-class modelling.                 |
-| `shap_per_class_multiclass.png`  | Feature dominance for each intention level.                            |
-| `shap_per_class_3class.png`      | Per-class feature dominance for Low–Mid–High grouping.                 |
-| `shap_waterfall_binary.png`      | Individual case explanation in binary model.                           |
-| `shap_waterfall_multiclass.png`  | Individual case explanation in multiclass model.                       |
-| `shap_waterfall_3class.png`      | Individual case explanation in 3-class model.                          |
+Global and class-level explainability visuals.
 
+| File                           | Explanation                    |
+| ------------------------------ | ------------------------------ |
+| shap_importance_binary.png     | Global importance (binary)     |
+| shap_importance_multiclass.png | Global importance (4-class)    |
+| shap_importance_3class.png     | Global importance (3-class)    |
+| shap_summary_binary.png        | Summary plot (binary)          |
+| shap_summary_multiclass.png    | Summary plot (4-class)         |
+| shap_summary_3class.png        | Summary plot (3-class)         |
+| shap_dependence_binary.png     | Dependence plot (binary)       |
+| shap_dependence_multiclass.png | Dependence plot (4-class)      |
+| shap_dependence_3class.png     | Dependence plot (3-class)      |
+| shap_per_class_multiclass.png  | Per-class importance           |
+| shap_per_class_3class.png      | Per-class importance (3-class) |
+| shap_waterfall_binary.png      | Individual case (binary)       |
+| shap_waterfall_multiclass.png  | Individual case (4-class)      |
+| shap_waterfall_3class.png      | Individual case (3-class)      |
 
-📈 Model Performance & Matrix Files — outputs/results/
+📈 Model Performance — outputs/results/
 
-These files provide the numerical evidence of model performance referenced in Section 4.1 – Model Performance.
+| File                          | Explanation           |
+| ----------------------------- | --------------------- |
+| binary_results.csv            | Binary model metrics  |
+| multiclass_results.csv        | 4-class model metrics |
+| multiclass_3class_results.csv | 3-class model metrics |
+| confusion_matrices_3class.png | Confusion matrix      |
 
-| File                            | Explanation                                                          |
-| ------------------------------- | -------------------------------------------------------------------- |
-| `binary_results.csv`            | Performance metrics for binary models (accuracy, F1, ROC-AUC, etc.). |
-| `multiclass_results.csv`        | Performance metrics for four-class models.                           |
-| `multiclass_3class_results.csv` | Performance metrics for three-class validation models.               |
-| `confusion_matrices_3class.png` | Confusion matrix visualisation for 3-class classification.           |
+🔁 Reproducibility
 
-Together, these files ensure complete transparency between model evaluation, explainability outputs, and the discussion presented in the dissertation.
+By running the notebooks in order and using the provided dataset, all modelling steps, figures, and results from the dissertation can be reproduced.
+
+👤 Author
+
+Mert Efe Akillioglu
+MSc Data Analytics
